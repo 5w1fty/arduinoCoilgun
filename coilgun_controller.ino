@@ -43,6 +43,7 @@ bool charging = false;
 void setup() {
   Serial.begin(9600);
   lcd.begin(16,2);
+  lcd.backlight();
   lcd.setCursor(0,0);
   lcd.print("Initialising");
   digitalWrite(onLED, HIGH);
@@ -50,6 +51,7 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  charge();
 }
 
 //Function for meassuring muzzle Velocity of the projectile
@@ -79,13 +81,38 @@ void fire(){
   }
 
 void charge(){
-  while(setVoltage > mesVoltage){
+  //initialising the wanted voltage
+  setVoltage = analogRead(potVoltagePin);
+  int mapPotVoltage = map(setVoltage, 0, 1023,0,400);
+
+  //Initialising the meassured Voltage (to do this in real life use two resistors as a Voltage divider and meassure between 0-5V MAX!)
+  //You can calculate the necessary resistances online 
+  mesVoltage = analogRead(mesVoltagePin);
+  int mapMesVoltage = map(mesVoltage, 0, 1023,0,400);
+
+  //charging the coilgun capasitors as long as the meassured voltage of the capacitors is lower than the wanted voltage
+  while(mapPotVoltage >= mapMesVoltage){
     digitalWrite(chargePin, HIGH);
-    lcd.setCursor(1,0);
-    lcd.print("Charging");
-    
+    //Switching LED-States from "Charged" to "Charging"
     digitalWrite(chargingLED, HIGH);
     digitalWrite(chargedLED,LOW);
+    lcd.clear();
+    lcd.setCursor(4,0);
+    lcd.print("Charging");
+    lcd.setCursor(3,1);
+    lcd.print(mapPotVoltage);
+    //adjusting the wanted voltage
+    setVoltage = analogRead(potVoltagePin);
+    mapPotVoltage = map(setVoltage, 0, 1023,0,400);
+    
+    //adjusting the meassurement
+    mesVoltage = analogRead(mesVoltagePin);
+    mapMesVoltage = map(mesVoltage, 0, 1023,0,400);
+    lcd.setCursor(11,1);
+    lcd.print(mapMesVoltage);
+
     delay(100);
   }
+  digitalWrite(chargedLED, HIGH);
+  digitalWrite(chargingLED, LOW);
 }
