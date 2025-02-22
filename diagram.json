@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "author": "5w1fty",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-nano", "id": "nano", "top": 24, "left": -144.5, "attrs": {} },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -156.8,
+      "left": 168.8,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -282,
+      "left": -264.6,
+      "attrs": { "color": "red", "flip": "1" }
+    },
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": 142.7, "left": 134.2, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": -310.8,
+      "left": -140.2,
+      "attrs": { "color": "green", "flip": "1" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led3",
+      "top": -330,
+      "left": -34.6,
+      "attrs": { "color": "blue", "flip": "1" }
+    },
+    { "type": "wokwi-potentiometer", "id": "pot2", "top": 325.1, "left": -192.2, "attrs": {} }
+  ],
+  "connections": [
+    [ "lcd1:GND", "nano:GND.2", "black", [ "h0" ] ],
+    [ "lcd1:VCC", "nano:5V", "red", [ "h-105.6", "v249.7", "h-67.2" ] ],
+    [ "lcd1:SDA", "nano:A4", "green", [ "h-86.4", "v249.8", "h-144" ] ],
+    [ "lcd1:SCL", "nano:A5", "green", [ "h-76.8", "v249.9", "h-144" ] ],
+    [ "led1:A", "nano:8", "green", [ "v57.6", "h-9.6" ] ],
+    [ "led1:C", "nano:GND.2", "green", [ "v28.8", "h0.4" ] ],
+    [ "pot1:GND", "nano:GND.1", "black", [ "v57.6", "h-153.6" ] ],
+    [ "pot1:VCC", "nano:5V", "red", [ "v19.2", "h-202.4" ] ],
+    [ "pot1:SIG", "nano:A0", "green", [ "v28.8", "h-250" ] ],
+    [ "led3:C", "nano:GND.2", "green", [ "v67.2", "h-9.6" ] ],
+    [ "led2:C", "nano:GND.2", "green", [ "v9.6", "h96" ] ],
+    [ "led3:A", "nano:9", "green", [ "v0", "h-57.2" ] ],
+    [ "led2:A", "nano:10", "green", [ "v19.2", "h10" ] ],
+    [ "pot2:GND", "nano:GND.1", "black", [ "v19.2", "h-48" ] ],
+    [ "pot2:VCC", "nano:5V", "red", [ "v0", "h124" ] ],
+    [ "pot2:SIG", "nano:A1", "green", [ "v9.6", "h86" ] ]
+  ],
+  "dependencies": {}
+}
