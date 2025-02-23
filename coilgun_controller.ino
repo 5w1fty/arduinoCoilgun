@@ -7,8 +7,10 @@
 #define potVoltagePin A0
 //Voltage meassured on capacitor
 #define mesVoltagePin A1
-//Triggerpin
+//Trigger and arming
 #define trigger 6
+#define safety 5
+bool armed = false;
 //meassuring
 //Lightgate for meassuring muzzle velocity
 #define muzzleGate0 25
@@ -17,11 +19,14 @@
 const float gateLength = 0.1f;
 unsigned long entryTime = 0;
 unsigned long leftTime = 0;
+
+
 //OUTPUTS
 //Fire
 #define firePin 7
+
 //LEDS
-#define onLED 8
+#define armedLED 8
 #define chargingLED 9
 #define chargedLED 10
 #define fireLED 11
@@ -38,7 +43,6 @@ LiquidCrystal_I2C lcd(I2C_ADDR, LCD_COLUMNS, LCD_LINES);
 float setVoltage = 24.0f;
 float mesVoltage = 0.0f;
 
-bool charging = false;
 
 void setup() {
   Serial.begin(9600);
@@ -46,12 +50,25 @@ void setup() {
   lcd.backlight();
   lcd.setCursor(0,0);
   lcd.print("Initialising");
-  digitalWrite(onLED, HIGH);
+
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  charge();
+  //charge();
+  arm();
+}
+
+
+
+void arm(){
+  if(digitalRead(4) == LOW){
+    armed = false;
+    digitalWrite(armedLED, LOW);
+  }else{
+    armed = false;
+    digitalWrite(armedLED, LOW);
+  }
 }
 
 //Function for meassuring muzzle Velocity of the projectile
@@ -78,6 +95,7 @@ float mesVel(){
 
 void fire(){
   digitalWrite(firePin,HIGH);
+  delay(50);
   }
 
 void charge(){
