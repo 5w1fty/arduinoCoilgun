@@ -50,25 +50,28 @@ void setup() {
   lcd.backlight();
   lcd.setCursor(0,0);
   lcd.print("Initialising");
+  pinMode(safety, INPUT);
 
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  //charge();
+  charge();
   arm();
 }
 
 
-
 void arm(){
-  if(digitalRead(4) == LOW){
+  if(digitalRead(safety) == LOW){
+    Serial.println("safety is: ON");
     armed = false;
     digitalWrite(armedLED, LOW);
   }else{
+    Serial.println("safety is: OFF");
     armed = false;
-    digitalWrite(armedLED, LOW);
+    digitalWrite(armedLED, HIGH);
   }
+  delay(50);
 }
 
 //Function for meassuring muzzle Velocity of the projectile
