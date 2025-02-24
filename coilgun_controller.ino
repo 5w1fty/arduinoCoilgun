@@ -11,6 +11,8 @@
 #define trigger 6
 #define safety 5
 bool armed = false;
+//Firemodes: 0=Safety, 1=SemiAuto, 2=Fullauto
+int fireMode = 0;
 //meassuring
 //Lightgate for meassuring muzzle velocity
 #define muzzleGate0 25
@@ -98,9 +100,25 @@ float mesVel(){
 }
 
 void fire(){
-  digitalWrite(firePin,HIGH);
-  delay(50);
+
+  if(fireMode == 1){  
+    if(digitalRead(trigger)==HIGH){
+      digitalWrite(firePin,HIGH);
+      delay(50);
+      digitalWrite(firePin,LOW);
+      delay(50);
+    }
   }
+
+  if(fireMode==2){
+    while(digitalRead(trigger)==HIGH){
+      digitalWrite(firePin,HIGH);
+      delay(50);
+      digitalWrite(firePin,LOW);
+      delay(50);
+    }
+  }
+}
 
 void charge(){
   arm();
