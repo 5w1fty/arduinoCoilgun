@@ -34,7 +34,21 @@
       "attrs": { "color": "blue", "flip": "1" }
     },
     { "type": "wokwi-potentiometer", "id": "pot2", "top": 325.1, "left": -192.2, "attrs": {} },
-    { "type": "wokwi-slide-switch", "id": "sw1", "top": -34, "left": -188.9, "attrs": {} }
+    { "type": "wokwi-slide-switch", "id": "sw1", "top": -34, "left": -188.9, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": -99.4,
+      "left": -355.2,
+      "attrs": { "color": "green", "xray": "1" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led4",
+      "top": -301.2,
+      "left": -178.6,
+      "attrs": { "color": "white", "flip": "1" }
+    }
   ],
   "connections": [
     [ "lcd1:GND", "nano:GND.2", "black", [ "h0" ] ],
@@ -54,7 +68,11 @@
     [ "pot2:VCC", "nano:5V", "red", [ "v0", "h124" ] ],
     [ "pot2:SIG", "nano:A1", "green", [ "v9.6", "h86" ] ],
     [ "sw1:3", "nano:5", "green", [ "v19.2", "h259.4" ] ],
-    [ "nano:5V", "sw1:2", "red", [ "v28.8", "h-307.2" ] ]
+    [ "nano:5V", "sw1:2", "red", [ "v28.8", "h-307.2" ] ],
+    [ "nano:6", "btn1:1.r", "green", [ "v-115.2", "h-211.2" ] ],
+    [ "led4:A", "nano:7", "green", [ "v57.6", "h86.8" ] ],
+    [ "led4:C", "nano:GND.2", "green", [ "v38.4", "h134.4" ] ],
+    [ "nano:5V", "btn1:2.l", "red", [ "v28.8", "h-307.2" ] ]
   ],
   "dependencies": {}
 }
