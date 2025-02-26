@@ -1,0 +1,14 @@
+Coil Calculator:
+https://www.electronicdeveloper.de/induktivitaetluftmehrl.aspx
+
+my specs:
+outer diameter: 50mm
+inner diameter: 15mm
+length: 30mm
+turnings: 100
+
+-->Wire diameter: 2mm
+-->Wire length: 10,21m/coil
+-->Inductivity: 159,20 µH
+-->Coil crosssectional area: 176.7mm²
+
