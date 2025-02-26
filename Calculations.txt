@@ -1,6 +1,9 @@
 Coil Calculator:
 https://www.electronicdeveloper.de/induktivitaetluftmehrl.aspx
 
+Resistance calculator: 
+https://rechneronline.de/material/spezifischer-widerstand.php
+
 my specs:
 outer diameter: 50mm
 inner diameter: 15mm
@@ -11,4 +14,15 @@ turnings: 100
 -->Wire length: 10,21m/coil
 -->Inductivity: 159,20 µH
 -->Coil crosssectional area: 176.7mm²
+-->Resistance: 0.058 Ohm
 
+
+
+---Usefull formulas for the Coilgun--
+
+Inductivity:   L = n² ∗ μr ​∗ μ0 ∗ l/A​
+B-Field:       H = I(t) * n/l
+Magnetic flux: B = μr * μ0 * I(t) * n/l
+Energy:        E = 1/2 * L * [I(t)]²
+Self induc.    U = -L * dI/dt
+Resistance:    R = 0,017 * m/mm²
