@@ -59,6 +59,7 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   charge();
+  fire();
 }
 
 
@@ -67,12 +68,12 @@ void arm(){
     Serial.println("safety is: ON");
     armed = false;
     digitalWrite(armedLED, LOW);
+    fireMode = 2;
   }else{
     Serial.println("safety is: OFF");
     armed = false;
     digitalWrite(armedLED, HIGH);
-    lcd.setCursor(4,0);
-    lcd.print("armed="+ armed);
+    fireMode = 1;
   }
   delay(50);
 }
@@ -100,22 +101,22 @@ float mesVel(){
 }
 
 void fire(){
-
+  arm();
   if(fireMode == 1){  
     if(digitalRead(trigger)==HIGH){
       digitalWrite(firePin,HIGH);
-      delay(50);
+      delay(250);
       digitalWrite(firePin,LOW);
-      delay(50);
+      delay(250);
     }
   }
 
   if(fireMode==2){
     while(digitalRead(trigger)==HIGH){
       digitalWrite(firePin,HIGH);
-      delay(50);
+      delay(100);
       digitalWrite(firePin,LOW);
-      delay(50);
+      delay(100);
     }
   }
 }
