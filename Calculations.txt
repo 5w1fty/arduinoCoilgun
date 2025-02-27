@@ -4,6 +4,9 @@ https://www.electronicdeveloper.de/induktivitaetluftmehrl.aspx
 Resistance calculator: 
 https://rechneronline.de/material/spezifischer-widerstand.php
 
+B-Field calculator:
+https://rechneronline.de/kraft/elektromagnet.php
+
 my specs:
 outer diameter: 50mm
 inner diameter: 15mm
