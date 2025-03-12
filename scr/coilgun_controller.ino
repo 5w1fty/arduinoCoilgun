@@ -22,6 +22,8 @@ const float gateLength = 0.1f;
 unsigned long entryTime = 0;
 unsigned long leftTime = 0;
 
+//Inputs for gates. I'll need 10, so I'm going on the MEGA soon, cuz nano doesn't have enough pins
+#define gates[] = {A2,A3,A6,A7};
 
 //OUTPUTS
 //Fire
@@ -62,7 +64,7 @@ void loop() {
   fire();
 }
 
-
+//Function for arming and disarming
 void arm(){
   if(digitalRead(safety) == LOW){
     Serial.println("safety is: ON");
@@ -100,6 +102,7 @@ float mesVel(){
   return vel;
 }
 
+//Function for firing
 void fire(){
   arm();
   if(fireMode == 1){  
@@ -121,6 +124,7 @@ void fire(){
   }
 }
 
+//Function for charging caps, if you use some
 void charge(){
   arm();
   if(armed == true){
@@ -159,5 +163,16 @@ void charge(){
 
     digitalWrite(chargedLED, HIGH);
     digitalWrite(chargingLED, LOW);
+  }
+}
+
+//Function for determing if the projectile is in the gate. I'll add matrix for rising/on/falling/off coils soon.
+bool isProjectileInGate(int gateID){
+  int rawVal = analogRead(gates[gateID]);
+  int mapVal = map(rawVal,0,1023,0,100);
+  if(mapVal >= 75){
+    return false;
+  }else{
+    return true;
   }
 }
